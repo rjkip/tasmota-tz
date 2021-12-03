@@ -186,6 +186,16 @@
       {/if}
     </div>
   </div>
+  <div class="row">
+    <footer class="twelve columns">
+      <hr />
+      <p>
+        Hastily created by<br />
+        <a href="https://www.linkedin.com/in/rjkip/">💼 in/rjkip</a>
+        • <a href="https://twitter.com/rjkip">🐦 @rjkip</a>
+      </p>
+    </footer>
+  </div>
 </div>
 
 <style>
@@ -204,6 +214,16 @@
   .container {
     margin-bottom: 10rem;
     margin-top: 5rem;
+  }
+
+  a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #07234f;
+  }
+
+  footer {
+    text-align: center;
   }
 
   /* Larger than mobile */
