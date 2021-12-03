@@ -204,6 +204,7 @@
   .map {
     width: 100%;
     height: 50vh;
+    min-height: 300px;
     padding-bottom: 1rem;
   }
   .help {
