@@ -13,6 +13,7 @@
     weekFromDayOfMonth
   } from '$lib/timezones';
   import TasmotaTzDocs from '$lib/TasmotaTzDocs.svelte';
+  import Command from '$lib/Command.svelte';
 
   // Big blurp of code; don't feel like fixing until necessary
 
@@ -122,7 +123,7 @@
         <Map bind:latLng />
       </div>
 
-      <form>
+      <form on:submit|preventDefault>
         <div class="row">
           <div class="three columns">
             <label for="lat">Latitude</label>
@@ -171,7 +172,7 @@
 
       {#if command}
         <h2>Command</h2>
-        <textarea class="u-full-width" disabled={loading}>{command}</textarea>
+        <Command {command} disabled={loading} />
 
         <h3>Daylight saving information looked up</h3>
         <p>

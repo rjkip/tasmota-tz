@@ -12,10 +12,6 @@ h4 {
   font-weight: bold;
 }
 
-textarea {
-  font-family: monospace;
-}
-
 [disabled] {
   background-color: #ddd !important;
 }
