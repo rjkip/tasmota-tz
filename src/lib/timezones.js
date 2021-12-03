@@ -1,5 +1,5 @@
-import {sortBy, unique} from '$lib/arrays';
-import {Timezone} from '@tubular/time';
+import { sortBy, unique } from '$lib/arrays';
+import { Timezone } from '@tubular/time';
 
 export const countriesAndTimezones = Timezone.getAvailableTimezones().flatMap((tzName) =>
   [...Timezone.getCountries(tzName)].map((countryIso2) => ({
