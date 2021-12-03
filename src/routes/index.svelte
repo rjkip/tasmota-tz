@@ -17,7 +17,7 @@
 
   // Big blurp of code; don't feel like fixing until necessary
 
-  let loading = false,
+  let loading = true,
     latLng = { lat: -41.54147, lng: 172.96875 },
     reversedLatLng,
     selectedCountryIso,
