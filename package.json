@@ -2,10 +2,9 @@
   "name": "tasmoto-tz",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "dev": "node fix-tubular.js dev && svelte-kit dev",
+    "build": "node fix-tubular.js build && svelte-kit build",
     "package": "svelte-kit package",
-    "prepare": "node prepare.js",
     "preview": "svelte-kit preview",
     "lint": "prettier --check --plugin-search-dir=. .",
     "format": "prettier --write --plugin-search-dir=. ."
