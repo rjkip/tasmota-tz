@@ -114,7 +114,8 @@
       <h2>Device location</h2>
       <p>
         For accurate sunrise and sunset information, click on a location on the map near where the
-        device is located. This will also determine the corresponding time zone.
+        device is located, select the correct time zone, and execute the command in your Tasmota
+        device's console.
       </p>
 
       <div class="map">
