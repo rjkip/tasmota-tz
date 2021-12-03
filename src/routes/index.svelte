@@ -96,6 +96,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Tasmota time zone command helper</title>
+</svelte:head>
+
 <div class="container">
   <div class="row">
     <div class="twelve columns">
