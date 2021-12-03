@@ -1,6 +1,4 @@
 <script>
-  import { fade, slide } from 'svelte/transition';
-
   export let command = '',
     disabled = false;
   let input,
@@ -16,7 +14,7 @@
     }
     setTimeout(() => {
       informCommandCopied = false;
-    }, 5000);
+    }, 3000);
   }
   function onSelect(e) {
     if (
@@ -31,12 +29,24 @@
 
 <form on:submit|preventDefault>
   <div class="side-by-side">
-    <input bind:this={input} type="text" {disabled} value={command} on:select={onSelect} />
-    <button on:click={copy}>Copy</button>
+    <input
+      bind:this={input}
+      class:not-copied={!informCommandCopied}
+      class:copied={informCommandCopied}
+      type="text"
+      {disabled}
+      value={command}
+      on:select={onSelect}
+    />
+    <button
+      on:click={copy}
+      class:not-copied={!informCommandCopied}
+      class:copied={informCommandCopied}
+      {disabled}
+    >
+      {#if informCommandCopied}✔️{:else}Copy{/if}
+    </button>
   </div>
-  {#if informCommandCopied}
-    <p class="inform-command-copied" in:slide out:fade>🖖 Command copied to your clipboard</p>
-  {/if}
 </form>
 
 <style>
@@ -54,9 +64,13 @@
     }
   }
 
-  .inform-command-copied {
-    font-weight: bold;
+  .not-copied {
+    transition: background-color 750ms ease, border-color 750ms ease;
+  }
+  .copied {
+    border-color: green;
     color: green;
+    background-color: #eef8ee;
   }
 
   input {
