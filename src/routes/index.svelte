@@ -215,6 +215,7 @@
 
   .container {
     margin-bottom: 10rem;
+    margin-top: 5rem;
   }
 
   /* Larger than mobile */
