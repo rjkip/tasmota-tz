@@ -9,12 +9,12 @@
     input.select();
     document.execCommand('copy');
     informCommandCopied = true;
-    if (window.plausible) {
-      window.plausible('copy');
-    }
     setTimeout(() => {
       informCommandCopied = false;
     }, 3000);
+    if (window.plausible) {
+      window.plausible('copy');
+    }
   }
   function onSelect(e) {
     if (
