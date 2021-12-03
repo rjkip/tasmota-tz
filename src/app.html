@@ -5,6 +5,18 @@
     <meta name="description" content="" />
     <link rel="icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://browser.sentry-cdn.com/6.15.0/bundle.min.js"
+      integrity="sha384-uAr9Te+rNkmpaCjPTu4/ipQDpO1nR6fEY8JX+NHVNO5mY6LUs362JWJD8rHyaLEt"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      if (window.location.origin === 'https://tasmota-tz.netlify.app') {
+        Sentry.init({
+          dsn: 'https://308dd0ed7a0949178fb508d127405c86@o265549.ingest.sentry.io/6091908'
+        });
+      }
+    </script>
     %svelte.head%
   </head>
   <body>
