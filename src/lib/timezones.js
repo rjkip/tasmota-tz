@@ -11,7 +11,10 @@ export const countriesAndTimezones = Timezone.getAvailableTimezones().flatMap((t
 export const countries = unique(countriesAndTimezones.map((it) => it.countryIso))
   .map((countryIso) => ({
     countryIso,
-    countryDisplayName: new Intl.DisplayNames(undefined, { type: 'region' }).of(countryIso)
+    countryDisplayName:
+      typeof Intl !== 'undefined' && Intl.DisplayNames
+        ? new Intl.DisplayNames(undefined, { type: 'region' }).of(countryIso)
+        : countryIso
   }))
   .sort(sortBy('countryDisplayName'));
 
