@@ -23,7 +23,6 @@
       if (latLng.lng < -180) latLng.lng = Math.ceil(-latLng.lng / 360) * 360 + latLng.lng;
       latLng.lat = ((latLng.lat + 90) % 180) - 90;
       latLng.lng = ((latLng.lng + 180) % 360) - 180;
-      console.log({ latLng });
     });
 
     return () => {
