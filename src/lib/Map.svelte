@@ -1,5 +1,4 @@
 <script>
-  import 'leaflet/dist/leaflet.css';
   import { browser } from '$app/env';
   import { onMount } from 'svelte';
 
