@@ -24,6 +24,18 @@ export function getTimeZonesForCountryIso(iso) {
   ).sort();
 }
 
+export function getSuggestedTimeZonesForCountry(iso) {
+  const suggested = getTimeZonesForCountryIso(iso);
+  const rest = getAllTimeZones()
+    .filter((it) => !suggested.includes(it))
+    .sort();
+  return [...suggested, null, ...rest];
+}
+
+function getAllTimeZones() {
+  return countriesAndTimezones.map((it) => it.countryTimeZone);
+}
+
 export function countryDisplayNameByIso(iso) {
   return countries.filter((it) => it.countryIso === iso).map((it) => it.countryDisplayName);
 }

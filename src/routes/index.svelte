@@ -9,6 +9,7 @@
   import {
     countries,
     countryDisplayNameByIso,
+    getSuggestedTimeZonesForCountry,
     getTimeZonesForCountryIso,
     weekFromDayOfMonth
   } from '$lib/timezones';
@@ -33,7 +34,7 @@
 
   $: hemisphere = latLng.lat >= 0 ? '0' : '1'; // 0=North, 1=South
 
-  $: timeZones = selectedCountryIso && getTimeZonesForCountryIso(selectedCountryIso);
+  $: timeZones = selectedCountryIso && getSuggestedTimeZonesForCountry(selectedCountryIso);
 
   $: timeZoneInfo = selectedTimeZone && Timezone.getTimezone(selectedTimeZone, latLng.lng);
   $: timeZoneUtcOffsetMinutes = timeZoneInfo && timeZoneInfo.utcOffset / 60;
@@ -73,8 +74,7 @@
     try {
       loading = true;
       reversedLatLng = latLng;
-      const countryCode = await reverseGeocodeCountry(latLng);
-      selectedCountryIso = countryCode;
+      selectedCountryIso = await reverseGeocodeCountry(latLng);
       const timeZonesForCountryIso = getTimeZonesForCountryIso(selectedCountryIso);
       if (!timeZonesForCountryIso.includes(selectedTimeZone)) {
         selectedTimeZone = timeZonesForCountryIso[0];
@@ -164,7 +164,7 @@
           <label for="timezone">Time zone (select manually)</label>
           <select id="timezone" bind:value={selectedTimeZone} disabled={loading}>
             {#each timeZones as timeZone}
-              <option value={timeZone}>{timeZone}</option>
+              <option value={timeZone} disabled={!timeZone}>{timeZone || '------'}</option>
             {/each}
           </select>
         {/if}
