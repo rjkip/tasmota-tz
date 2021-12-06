@@ -33,7 +33,7 @@ export function getSuggestedTimeZonesForCountry(iso) {
 }
 
 function getAllTimeZones() {
-  return countriesAndTimezones.map((it) => it.countryTimeZone);
+  return unique(countriesAndTimezones.map((it) => it.countryTimeZone));
 }
 
 export function countryDisplayNameByIso(iso) {
