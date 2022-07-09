@@ -2,7 +2,8 @@
   export let command = '',
     disabled = false;
   let input,
-    informCommandCopied = false;
+    informCommandCopied = false,
+    reportedCopy = false;
 
   function copy() {
     input.focus();
@@ -12,7 +13,8 @@
     setTimeout(() => {
       informCommandCopied = false;
     }, 3000);
-    if (window.plausible) {
+    if (window.plausible && !reportedCopy) {
+      reportedCopy = true;
       window.plausible('copy');
     }
   }
