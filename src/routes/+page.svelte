@@ -4,7 +4,7 @@
   import '../skeleton.css';
   import '../app.css';
   import Map from '$lib/Map.svelte';
-  import { browser } from '$app/env';
+  import { browser } from '$app/environment';
   import { geolocate, reverseGeocodeCountry } from '$lib/nominatim';
   import {
     countries,
