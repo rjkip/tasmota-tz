@@ -1,9 +1,11 @@
 <script>
   import { browser } from '$app/environment';
-  import { onMount } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
 
   export let latLng;
   let mountPoint, map, marker;
+
+  let dispatch = createEventDispatcher();
 
   onMount(async () => {
     if (!browser) return;
@@ -11,7 +13,7 @@
     const L = await import('leaflet');
     map = L.map(mountPoint);
     mountPoint.focus({ preventScroll: true });
-    map.setView([-41.54147, 172.96875], 5);
+    map.setView([30, 20], 2);
 
     L.tileLayer(`https://tile.osm.ch/switzerland/{z}/{x}/{y}.png`, {
       attribution: `© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors`
@@ -23,6 +25,7 @@
       if (latLng.lng < -180) latLng.lng = Math.ceil(-latLng.lng / 360) * 360 + latLng.lng;
       latLng.lat = ((latLng.lat + 90) % 180) - 90;
       latLng.lng = ((latLng.lng + 180) % 360) - 180;
+      dispatch('latLngSelected');
     });
 
     return () => {
@@ -37,7 +40,7 @@
     }
     try {
       marker = L.marker(latLng).addTo(map);
-      map.flyTo(latLng);
+      map.panInside(latLng, { padding: [150, 150] });
     } catch (e) {
       console.warn(e);
     }

@@ -18,8 +18,8 @@
 
   // Big blurp of code; don't feel like fixing until necessary
 
-  let loading = true,
-    latLng = { lat: -41.54147, lng: 172.96875 },
+  let loading = false,
+    latLng = { lat: 51.5, lng: 0 },
     reversedLatLng,
     selectedCountryIso,
     selectedTimeZone;
@@ -44,9 +44,7 @@
   $: daylightSavingStarts = timeZoneInfo && timeZoneInfo._dstRule;
   $: daylightSavingEnds = timeZoneInfo && timeZoneInfo._stdRule;
 
-  $: commands = latLng.lat &&
-    latLng.lng &&
-    selectedCountryIso &&
+  $: commands = selectedCountryIso &&
     selectedTimeZone && [
       `Latitude ${latLng.lat}`,
       `Longitude ${latLng.lng}`,
@@ -66,14 +64,18 @@
     ];
   $: command = commands && `Backlog ${commands.join('; ')}`;
 
-  $: if (browser && latLng && JSON.stringify(latLng) !== JSON.stringify(reversedLatLng)) {
+  if (browser) {
     reverseGeolocateCountry();
   }
 
   async function reverseGeolocateCountry() {
+    if (JSON.stringify(latLng) === JSON.stringify(reversedLatLng)) {
+      return;
+    }
+
     try {
       loading = true;
-      reversedLatLng = latLng;
+      reversedLatLng = { ...latLng };
       selectedCountryIso = await reverseGeocodeCountry(latLng);
       const timeZonesForCountryIso = getTimeZonesForCountryIso(selectedCountryIso);
       if (!timeZonesForCountryIso.includes(selectedTimeZone)) {
@@ -120,7 +122,7 @@
       </p>
 
       <div class="map">
-        <Map bind:latLng />
+        <Map bind:latLng on:latLngSelected={reverseGeolocateCountry} />
       </div>
 
       <form on:submit|preventDefault>
@@ -129,9 +131,12 @@
             <label for="lat">Latitude</label>
             <input
               class="u-full-width"
-              type="text"
+              type="number"
+              min="-90"
+              max="90"
               id="lat"
               bind:value={latLng.lat}
+              on:change={reverseGeolocateCountry}
               disabled={loading}
             />
           </div>
@@ -139,9 +144,12 @@
             <label for="lng">Longitude</label>
             <input
               class="u-full-width"
-              type="text"
+              type="number"
+              min="-180"
+              max="180"
               id="lng"
               bind:value={latLng.lng}
+              on:change={reverseGeolocateCountry}
               disabled={loading}
             />
           </div>
