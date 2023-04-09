@@ -1,24 +1,23 @@
 {
-  "name": "tasmoto-tz",
+  "name": "tasmota-tz",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "dev": "node fix-tubular.js dev && svelte-kit dev",
-    "build": "node fix-tubular.js build && svelte-kit build",
-    "package": "svelte-kit package",
-    "preview": "svelte-kit preview",
+    "dev": "node fix-tubular.js && vite dev",
+    "build": "node fix-tubular.js && vite build",
+    "preview": "node fix-tubular.js && vite preview",
     "lint": "prettier --check --plugin-search-dir=. .",
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "next",
-    "@sveltejs/adapter-netlify": "^1.0.0-next.35",
-    "@sveltejs/kit": "next",
-    "@tubular/time": "^3.7.5",
-    "@types/leaflet": "^1.7.6",
-    "leaflet": "^1.7.1",
-    "prettier": "^2.4.1",
-    "prettier-plugin-svelte": "^2.4.0",
-    "svelte": "^3.44.0"
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/kit": "^1.5.0",
+    "@tubular/time": "^3.8.14",
+    "leaflet": "^1.9.3",
+    "prettier": "^2.8.7",
+    "prettier-plugin-svelte": "^2.10.0",
+    "svelte": "^3.54.0",
+    "vite": "^4.2.0"
   },
   "type": "module"
 }

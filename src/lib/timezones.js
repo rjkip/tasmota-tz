@@ -1,12 +1,17 @@
 import { sortBy, unique } from '$lib/arrays';
 import { Timezone } from '@tubular/time';
 
-export const countriesAndTimezones = Timezone.getAvailableTimezones().flatMap((tzName) =>
-  [...Timezone.getCountries(tzName)].map((countryIso2) => ({
-    countryIso: countryIso2,
-    countryTimeZone: tzName
-  }))
-);
+export const countriesAndTimezones = Timezone.getAvailableTimezones().flatMap((tzName) => {
+  try {
+    return [...Timezone.getCountries(tzName)].map((countryIso2) => ({
+      countryIso: countryIso2,
+      countryTimeZone: tzName
+    }));
+  } catch (e) {
+    console.warn(`'${tzName}' is likely not associated with a country; ignoring...`, e);
+    return [];
+  }
+});
 
 export const countries = unique(countriesAndTimezones.map((it) => it.countryIso))
   .map((countryIso) => ({
