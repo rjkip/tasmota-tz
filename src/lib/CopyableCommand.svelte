@@ -1,11 +1,16 @@
 <script>
+  import { slide } from 'svelte/transition';
+
   export let command = '',
     disabled = false;
   let input,
+    copyAttempted = false,
     informCommandCopied = false,
     reportedCopy = false;
 
   function copy() {
+    copyAttempted = true;
+
     input.focus();
     input.select();
     document.execCommand('copy');
@@ -18,38 +23,37 @@
       window.plausible('copy');
     }
   }
-  function onSelect(e) {
-    if (
-      e.target.value.length > 0 &&
-      e.target.selectionStart === 0 &&
-      e.target.selectionEnd === e.target.value.length
-    ) {
-      copy();
-    }
-  }
 </script>
 
 <form on:submit|preventDefault>
   <div class="side-by-side">
     <input
       bind:this={input}
-      class:not-copied={!informCommandCopied}
-      class:copied={informCommandCopied}
+      class="copy"
+      class:inform-not-copied={!informCommandCopied}
+      class:inform-copied={informCommandCopied}
+      class:copied={copyAttempted}
       type="text"
       {disabled}
       value={command}
-      on:select={onSelect}
+      on:focus|once={copy}
     />
-    <button
-      on:click={copy}
-      class:not-copied={!informCommandCopied}
-      class:copied={informCommandCopied}
-      {disabled}
-    >
-      {#if informCommandCopied}✔️{:else}Copy{/if}
-    </button>
   </div>
 </form>
+
+<svelte:head>
+  <link rel="preload" as="image" href="https://storage.ko-fi.com/cdn/kofi2.png?v=3" />
+</svelte:head>
+{#if copyAttempted}
+  <div class="success" transition:slide>
+    <p>
+      ✅ Command copied! If you thought this was useful, you can <a
+        href="https://ko-fi.com/D1D8K5VHY/?hidefeed=true&widget=true&embed=true"
+        target="_blank">buy me a coffee!</a
+      >
+    </p>
+  </div>
+{/if}
 
 <style>
   .side-by-side {
@@ -66,16 +70,35 @@
     }
   }
 
-  .not-copied {
+  .copy {
+    cursor: default;
+  }
+  .inform-not-copied {
     transition: background-color 750ms ease, border-color 750ms ease;
   }
-  .copied {
+  .inform-copied {
     border-color: green;
     color: green;
     background-color: #eef8ee;
   }
+  .copied {
+    cursor: text;
+  }
 
   input {
     font-family: monospace;
+
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .success {
+    border: 1px solid green;
+    border-radius: var(--box-border-radius);
+    background: #eef8ee;
+    padding: 0.5em;
+
+    margin-top: 2em;
   }
 </style>
