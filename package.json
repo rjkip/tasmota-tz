@@ -14,9 +14,11 @@
     "@sveltejs/kit": "^1.5.0",
     "@tubular/time": "^3.8.14",
     "leaflet": "^1.9.3",
+    "lodash": "^4.17.21",
     "prettier": "^2.8.7",
     "prettier-plugin-svelte": "^2.10.0",
     "svelte": "^3.54.0",
+    "svelte-select": "^5.5.3",
     "vite": "^4.2.0"
   },
   "type": "module"
