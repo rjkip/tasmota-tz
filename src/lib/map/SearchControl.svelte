@@ -3,6 +3,7 @@
   import { debounce } from 'lodash/function.js';
   import { createEventDispatcher } from 'svelte';
   import { onClickOutside } from './actions.js';
+  import { reportEventOnce } from '$lib/plausible.js';
 
   const dispatch = createEventDispatcher();
 
@@ -13,6 +14,8 @@
 
   async function initiateGeolocation() {
     if (query.length < 3) return;
+
+    reportEventOnce('geolocation/search');
 
     geolocationResults = null;
 
@@ -35,16 +38,17 @@
   }
 
   function initiateBrowserGeolocation() {
+    reportEventOnce('geolocation/browser');
+
     geolocatingButton = true;
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const { latitude, longitude, accuracy } = position.coords;
+        const { latitude, longitude } = position.coords;
 
         const detail = { latLng: { lat: latitude, lng: longitude } };
         dispatch('location', detail);
 
-        // query = `${latitude}, ${longitude} (<${accuracy}m)`;
         geolocatingButton = false;
       },
       (positionError) => {

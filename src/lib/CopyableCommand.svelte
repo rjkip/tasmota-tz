@@ -1,12 +1,12 @@
 <script>
   import { slide } from 'svelte/transition';
+  import { reportEventOnce } from '$lib/plausible.js';
 
   export let command = '',
     disabled = false;
   let input,
     copyAttempted = false,
-    informCommandCopied = false,
-    reportedCopy = false;
+    informCommandCopied = false;
 
   function copy() {
     copyAttempted = true;
@@ -18,10 +18,7 @@
     setTimeout(() => {
       informCommandCopied = false;
     }, 3000);
-    if (window.plausible && !reportedCopy) {
-      reportedCopy = true;
-      window.plausible('copy');
-    }
+    reportEventOnce('copy');
   }
 </script>
 

@@ -1,6 +1,7 @@
 <script>
   import { browser } from '$app/environment';
   import { createEventDispatcher, onMount } from 'svelte';
+  import { reportEventOnce } from '$lib/plausible.js';
 
   export let marker,
     markerThrobbing = false;
@@ -29,6 +30,7 @@
 
     map.on('click', (event) => {
       if (event.originalEvent.detail === 1) {
+        reportEventOnce('geolocation/map-select');
         dispatch('click', { latLng: event.latlng });
       }
     });

@@ -26,11 +26,7 @@
   <section class:enabled={latLng}>
     <h2>Select a time zone for that location</h2>
     {#if latLng}
-      <TimeZoneSelector
-        enabled={latLng}
-        bind:timeZone={selectedTimeZone}
-        filterByCountryIso={countryIso}
-      />
+      <TimeZoneSelector bind:timeZone={selectedTimeZone} filterByCountryIso={countryIso} />
     {/if}
   </section>
 
