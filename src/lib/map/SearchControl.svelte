@@ -44,12 +44,11 @@
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const { latitude, longitude, accuracy } = position.coords;
+        const { latitude, longitude } = position.coords;
 
         const detail = { latLng: { lat: latitude, lng: longitude } };
         dispatch('location', detail);
 
-        // query = `${latitude}, ${longitude} (<${accuracy}m)`;
         geolocatingButton = false;
       },
       (positionError) => {
