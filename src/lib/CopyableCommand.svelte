@@ -46,6 +46,7 @@
     <p>
       ✅ Command copied! If you thought this was useful, you can <a
         href="https://ko-fi.com/D1D8K5VHY/?hidefeed=true&widget=true&embed=true"
+        on:click={() => reportEventOnce('donate')}
         target="_blank">buy me a coffee!</a
       >
     </p>
