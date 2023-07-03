@@ -36,6 +36,12 @@
       on:focus|once={copy}
     />
   </div>
+  <p class="help">
+    To execute the command, visit the console in your device's <a
+      href="https://tasmota.github.io/docs/WebUI/"
+      target="_blank">web UI</a
+    >.
+  </p>
 </form>
 
 <svelte:head>
@@ -89,6 +95,13 @@
     display: flex;
     align-items: stretch;
     width: 100%;
+  }
+
+  .help {
+    color: #4b4b4b;
+    border-left: 1px solid #ccc;
+    padding: 0.5em 0 0.5em 1em;
+    margin-left: 0.5em;
   }
 
   .success {
