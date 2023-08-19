@@ -24,6 +24,10 @@ h2 {
   font-size: 2rem;
 }
 
+p {
+  line-height: 1.6;
+}
+
 [disabled] {
   background-color: #ddd !important;
 }
