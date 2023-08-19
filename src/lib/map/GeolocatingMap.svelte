@@ -6,6 +6,8 @@
 
   const dispatch = createEventDispatcher();
 
+  export let tall = true;
+
   let marker,
     geolocating = false,
     searchQuery;
@@ -30,7 +32,7 @@
   }
 </script>
 
-<div class="layers">
+<div class="layers" class:tall>
   <div class="controls-layer">
     <div class="search-control">
       <SearchControl
@@ -51,6 +53,10 @@
 <style>
   .layers {
     display: grid;
+    height: 20rem;
+    transition: height 500ms;
+  }
+  .layers.tall {
     height: 30rem;
   }
   .layers > * {

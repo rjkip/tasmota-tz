@@ -4,6 +4,7 @@
   import GeolocatingMap from './map/GeolocatingMap.svelte';
 
   let latLng;
+  let latLngSelectedOnce = false;
   let countryIso;
   let selectedTimeZone;
 
@@ -14,13 +15,15 @@
   function onLocated(event) {
     latLng = event.detail.latLng;
     countryIso = event.detail.countryIso;
+
+    latLngSelectedOnce = true;
   }
 </script>
 
 <div class="sections">
   <section class:enabled={true}>
     <h2>📌 Pick the location of your Tasmota device</h2>
-    <GeolocatingMap on:locating={onLocating} on:located={onLocated} />
+    <GeolocatingMap on:locating={onLocating} on:located={onLocated} tall={!latLngSelectedOnce} />
   </section>
 
   <section class:enabled={latLng}>

@@ -35,7 +35,16 @@
       }
     });
 
+    let observer;
+    if ('ResizeObserver' in window) {
+      observer = new ResizeObserver(() => map.invalidateSize());
+      observer.observe(mountPoint);
+    }
+
     return () => {
+      if (observer) {
+        observer.unobserve(mountPoint);
+      }
       map.remove();
     };
   });
