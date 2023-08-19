@@ -19,19 +19,19 @@
 
 <div class="sections">
   <section class:enabled={true}>
-    <h2>Pick the location of your Tasmota device</h2>
+    <h2>📌 Pick the location of your Tasmota device</h2>
     <GeolocatingMap on:locating={onLocating} on:located={onLocated} />
   </section>
 
   <section class:enabled={latLng}>
-    <h2>Select a time zone for that location</h2>
+    <h2>🕙 Select a time zone for that location</h2>
     {#if latLng}
       <TimeZoneSelector bind:timeZone={selectedTimeZone} filterByCountryIso={countryIso} />
     {/if}
   </section>
 
   <section class:enabled={latLng && selectedTimeZone}>
-    <h2>Execute commands on your Tasmota device</h2>
+    <h2>🚀 Execute commands on your Tasmota device</h2>
     {#if latLng && selectedTimeZone}
       <TimeZoneCommand bind:timeZone={selectedTimeZone} {latLng} />
     {/if}
@@ -39,14 +39,6 @@
 </div>
 
 <style>
-  .sections {
-    counter-reset: sections;
-  }
-  h2:before {
-    counter-increment: sections;
-    content: counter(sections) '. ';
-  }
-
   section {
     transition: all 200ms;
   }
@@ -55,5 +47,6 @@
     opacity: 0.5;
     pointer-events: none;
     user-select: none;
+    filter: grayscale();
   }
 </style>
