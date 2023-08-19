@@ -9,7 +9,10 @@
 
 <main>
   <h1>Tasmota time zone command helper</h1>
-  <p>For accurate sunrise and sunset timers.</p>
+  <p>
+    Set up accurate sunrise and sunset timers on your Tasmota device. Just select your
+    device&rsquo;s geographic location and time zone and execute the command on your device.
+  </p>
 
   <CommandHelper />
 
