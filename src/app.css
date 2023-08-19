@@ -34,7 +34,8 @@ p {
 
 input {
   position: relative;
-  padding: 0 0 0 16px;
+  padding: 0 16px;
+  box-sizing: border-box;
   background: #fff;
   margin: 0;
 }
