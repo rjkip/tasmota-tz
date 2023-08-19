@@ -2,7 +2,7 @@
 
 Hastily created. For accurate Tasmota sunrise and sunset timers.
 
-https://tasmota-tz.netlify.app/
+https://tasmotatimezone.com/
 
 ```sh-session
 $ npm run dev
