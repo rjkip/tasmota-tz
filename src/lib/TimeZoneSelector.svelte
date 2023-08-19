@@ -49,10 +49,12 @@
 </script>
 
 <Select
+  inputAttributes={{ 'data-testid': 'select-timezone' }}
   bind:justValue={timeZone}
   bind:value
   items={effectiveTimeZones}
   groupBy={itemGroupBy}
   {itemFilter}
   showChevron
+  placeholder="Please select your time zone..."
 />

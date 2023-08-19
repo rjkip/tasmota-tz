@@ -34,6 +34,7 @@
       {disabled}
       value={command}
       on:focus|once={copy}
+      data-testid="copy"
     />
   </div>
   <p class="help">
