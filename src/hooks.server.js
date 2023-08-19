@@ -18,5 +18,18 @@ export async function handle({ event, resolve }) {
     });
   }
 
-  return await resolve(event);
+  const response = await resolve(event);
+
+  if (!response.headers.has('cache-control')) {
+    const secondsInMinute = 60;
+    const minutesInHour = 60;
+    const hoursInDay = 24;
+    const dayInSeconds = hoursInDay * minutesInHour * secondsInMinute;
+    response.headers.set(
+      'cache-control',
+      `max-age=${dayInSeconds}, s-maxage=60, stale-while-revalidate=10`
+    );
+  }
+
+  return response;
 }
