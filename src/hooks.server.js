@@ -21,13 +21,17 @@ export async function handle({ event, resolve }) {
   const response = await resolve(event);
 
   if (!response.headers.has('cache-control')) {
-    const secondsInMinute = 60;
-    const minutesInHour = 60;
-    const hoursInDay = 24;
-    const dayInSeconds = hoursInDay * minutesInHour * secondsInMinute;
+    const minuteInSeconds = 60;
+    const hourInMinutes = 60;
+    const dayInHours = 24;
+    const dayInSeconds = dayInHours * hourInMinutes * minuteInSeconds;
     response.headers.set(
       'cache-control',
-      `max-age=${dayInSeconds}, s-maxage=60, stale-while-revalidate=10`
+      [
+        `s-maxage=${minuteInSeconds}`,
+        `stale-while-revalidate=${dayInSeconds}`,
+        `stale-if-error=${dayInSeconds}`
+      ].join(', ')
     );
   }
 
