@@ -45,9 +45,6 @@
   </p>
 </form>
 
-<svelte:head>
-  <link rel="preload" as="image" href="https://storage.ko-fi.com/cdn/kofi2.png?v=3" />
-</svelte:head>
 {#if copyAttempted}
   <div class="success" transition:slide>
     <p>
