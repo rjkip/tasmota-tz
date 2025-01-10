@@ -10,11 +10,14 @@ if (browser) {
 
 const eventsReported = new Set();
 
-export function reportEventOnce(event) {
+export function reportEventOnce(event: string) {
   try {
     if (eventsReported.has(event)) return;
 
     window.plausible(event);
+    if (location.hostname === 'localhost') {
+      console.log('Reported event once', event);
+    }
     eventsReported.add(event);
   } catch (e) {
     console.warn('Error occurred while trying to report event once', event, e);

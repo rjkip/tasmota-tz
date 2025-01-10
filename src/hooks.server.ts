@@ -1,5 +1,6 @@
-/** @type {import('@sveltejs/kit').Handle} */
-export async function handle({ event, resolve }) {
+import type { Handle } from '@sveltejs/kit';
+
+export const handle: Handle = async function handle({ event, resolve }) {
   if (
     event.url.origin !== 'https://tasmotatimezone.com' &&
     !event.url.origin.startsWith('http://localhost:') &&
@@ -13,8 +14,8 @@ export async function handle({ event, resolve }) {
     return new Response('', {
       status: 301,
       headers: {
-        location: newLocation
-      }
+        location: newLocation,
+      },
     });
   }
 
@@ -30,10 +31,10 @@ export async function handle({ event, resolve }) {
       [
         `s-maxage=${minuteInSeconds}`,
         `stale-while-revalidate=${dayInSeconds}`,
-        `stale-if-error=${dayInSeconds}`
-      ].join(', ')
+        `stale-if-error=${dayInSeconds}`,
+      ].join(', '),
     );
   }
 
   return response;
-}
+};
