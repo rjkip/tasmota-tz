@@ -42,7 +42,7 @@
       data-testid="copy"
     />
   </div>
-  <p class="help">
+  <p>
     To execute the command, visit your device&rsquo;s <em>Console</em> by visiting its IP address in
     your browser, and pasting the command.
   </p>
@@ -92,13 +92,6 @@
     display: flex;
     align-items: stretch;
     width: 100%;
-  }
-
-  .help {
-    color: #4b4b4b;
-    border-left: 1px solid #ccc;
-    padding: 0.5em 0 0.5em 1em;
-    margin-left: 0.5em;
   }
 
   .success {
