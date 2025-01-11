@@ -27,17 +27,19 @@
 </script>
 
 <div class="sections">
-  <section class:enabled={true}>
-    <h2>📌 Pick the location of your Tasmota device</h2>
-    <GeolocatingMap on:locating={onLocating} on:located={onLocated} tall={!latLngSelectedOnce} />
-  </section>
+  {#if !copied}
+    <section class:enabled={true}>
+      <h2>📌 Pick the location of your Tasmota device</h2>
+      <GeolocatingMap on:locating={onLocating} on:located={onLocated} tall={!latLngSelectedOnce} />
+    </section>
 
-  <section class:enabled={latLng}>
-    <h2>🕙 Select a time zone for that location</h2>
-    {#if latLng}
-      <TimeZoneSelector bind:timeZone={selectedTimeZone} filterByCountryIso={countryIso} />
-    {/if}
-  </section>
+    <section class:enabled={latLng}>
+      <h2>🕙 Select a time zone for that location</h2>
+      {#if latLng}
+        <TimeZoneSelector bind:timeZone={selectedTimeZone} filterByCountryIso={countryIso} />
+      {/if}
+    </section>
+  {/if}
 
   <section class:enabled={latLng && selectedTimeZone}>
     <h2>🚀 Execute commands on your Tasmota device</h2>

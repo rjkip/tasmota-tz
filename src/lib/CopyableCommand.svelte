@@ -27,6 +27,10 @@
   }
 </script>
 
+{#if copyAttempted}
+  <p class="success" transition:slide>✅ Command copied!</p>
+{/if}
+
 <form on:submit|preventDefault>
   <div class="side-by-side">
     <input
@@ -48,12 +52,6 @@
   </p>
 </form>
 
-{#if copyAttempted}
-  <div class="success" transition:slide>
-    <p>✅ Command copied!</p>
-  </div>
-{/if}
-
 <style>
   .side-by-side {
     display: flex;
@@ -73,9 +71,7 @@
     cursor: default;
   }
   .inform-not-copied {
-    transition:
-      background-color 750ms ease,
-      border-color 750ms ease;
+    transition: background-color 750ms ease, border-color 750ms ease;
   }
   .inform-copied {
     border-color: green;
@@ -100,6 +96,6 @@
     background: #eef8ee;
     padding: 0.5em;
 
-    margin-top: 2em;
+    margin-block: 1em;
   }
 </style>
