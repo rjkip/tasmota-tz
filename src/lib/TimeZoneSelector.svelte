@@ -30,8 +30,8 @@
       details: {
         countryIso,
         countryDisplayName,
-        countryTimeZone
-      }
+        countryTimeZone,
+      },
     }));
   }
 

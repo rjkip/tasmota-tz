@@ -54,7 +54,7 @@
       (positionError) => {
         geolocatingButton = false;
         console.warn('Failed to geolocate', positionError);
-      }
+      },
     );
   }
 </script>

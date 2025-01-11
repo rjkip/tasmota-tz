@@ -13,8 +13,8 @@ export async function handle({ event, resolve }) {
     return new Response('', {
       status: 301,
       headers: {
-        location: newLocation
-      }
+        location: newLocation,
+      },
     });
   }
 
@@ -30,8 +30,8 @@ export async function handle({ event, resolve }) {
       [
         `s-maxage=${minuteInSeconds}`,
         `stale-while-revalidate=${dayInSeconds}`,
-        `stale-if-error=${dayInSeconds}`
-      ].join(', ')
+        `stale-if-error=${dayInSeconds}`,
+      ].join(', '),
     );
   }
 

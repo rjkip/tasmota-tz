@@ -17,7 +17,7 @@
     map = L.map(mountPoint, { zoomControl: false, doubleClickZoom: false });
     L.control
       .zoom({
-        position: 'topright'
+        position: 'topright',
       })
       .addTo(map);
 
@@ -25,7 +25,7 @@
     map.setView([30, 20], 2);
 
     L.tileLayer(`https://tile.osm.ch/switzerland/{z}/{x}/{y}.png`, {
-      attribution: `© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors`
+      attribution: `© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors`,
     }).addTo(map);
 
     map.on('click', (event) => {

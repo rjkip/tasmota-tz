@@ -33,9 +33,9 @@
                   `${weekFromDayOfMonth(daylightSavingEnds.dayOfMonth)},` +
                   `${daylightSavingEnds.month},${daylightSavingEnds.dayOfWeek},` +
                   `${daylightSavingEnds.atHour},${timeZoneUtcOffsetMinutes}`,
-                `TimeZone 99`
+                `TimeZone 99`,
               ]
-            : [`TimeZone ${timeZoneUtcOffsetFormatted}`])
+            : [`TimeZone ${timeZoneUtcOffsetFormatted}`]),
         ];
   $: command = commands && `Backlog ${commands.join('; ')}`;
 </script>

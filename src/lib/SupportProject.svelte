@@ -4,20 +4,20 @@
   export let countryIso;
 
   const linkByStore = {
-    'CA': 'https://amazon.ca/s?k=tasmota&tag=tmtz-20',
-    'DE': 'https://amazon.de/s?k=tasmota&tag=tmtz-20',
-    'NL': 'https://amazon.nl/s?k=tasmota&tag=tmtz-20',
-    'UK': 'https://amazon.co.uk/s?k=tasmota&tag=tmtz-20',
-    'US': 'https://www.amazon.com/s?k=tasmota&tag=tmtz-20',
-  }
+    CA: 'https://amazon.ca/s?k=tasmota&tag=tmtz-20',
+    DE: 'https://amazon.de/s?k=tasmota&tag=tmtz-20',
+    NL: 'https://amazon.nl/s?k=tasmota&tag=tmtz-20',
+    UK: 'https://amazon.co.uk/s?k=tasmota&tag=tmtz-20',
+    US: 'https://www.amazon.com/s?k=tasmota&tag=tmtz-20',
+  };
   const linkByCountry = {
-    'CA': linkByStore['US'],
-    'DE': linkByStore['DE'],
-    'NL': linkByStore['NL'],
-    'NZ': linkByStore['AU'],
-    'GB': linkByStore['UK'],
-    'US': linkByStore['US'],
-  }
+    CA: linkByStore['US'],
+    DE: linkByStore['DE'],
+    NL: linkByStore['NL'],
+    NZ: linkByStore['AU'],
+    GB: linkByStore['UK'],
+    US: linkByStore['US'],
+  };
 
   $: link = linkByCountry[countryIso];
 </script>

@@ -9,6 +9,6 @@ export function clampLatLng(latLng) {
     lng:
       latLng.lng < -180
         ? (latLng.lng = Math.ceil(-latLng.lng / 360) * 360 + latLng.lng)
-        : latLng.lng
+        : latLng.lng,
   };
 }

@@ -9,7 +9,7 @@ export const countriesAndTimezones = Timezone.getAvailableTimezones().flatMap((t
         typeof Intl !== 'undefined' && Intl.DisplayNames
           ? new Intl.DisplayNames(undefined, { type: 'region' }).of(countryIso2)
           : countryIso2,
-      countryTimeZone: tzName
+      countryTimeZone: tzName,
     }));
   } catch (e) {
     if (!browser || location.hostname === 'localhost') {

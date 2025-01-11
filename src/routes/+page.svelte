@@ -19,7 +19,10 @@
   <footer>
     <p>
       Created by<br />
-      <a href="https://reinier.nz/?utm_source=tasmotatimezone.com&utm_medium=referral&utm_content=footer">🌏 reinier.nz</a>
+      <a
+        href="https://reinier.nz/?utm_source=tasmotatimezone.com&utm_medium=referral&utm_content=footer"
+        >🌏 reinier.nz</a
+      >
       • <a href="https://www.linkedin.com/in/rjkip/">💼 in/rjkip</a>
       • <a href="https://twitter.com/rjkip">🐦 @rjkip</a>
     </p>
