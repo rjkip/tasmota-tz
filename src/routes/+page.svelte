@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
-  import { page } from '$app/state';
   import Autocomplete from '$lib/Autocomplete.svelte';
   import { reportEventOnce } from '$lib/plausible';
   import Steps from '$lib/Steps.svelte';
+  import { delay } from '$lib/utils.svelte';
   import maplibre, { type LngLatLike, type MapMouseEvent } from 'maplibre-gl';
   import {
     Control,
@@ -16,48 +15,47 @@
     type MapMoveEvent,
   } from 'svelte-maplibre';
 
-  let mapLocation: LatLngLike = [-76.00657875182223, 40.71890782088397];
-  let deviceLocation = $derived.by<LngLatLike | null>(() => {
-    const lngLat = page.params.lngLat?.split(',').map(Number);
-
-    if (lngLat?.length !== 2 || !lngLat.every(Number.isFinite)) {
-      return null;
-    }
-
-    return lngLat as [number, number];
-  });
+  let mapLocation: LngLatLike = [-76.00657875182223, 40.71890782088397];
+  let deviceLocation = $state<maplibre.LngLat | null>(null);
 
   function pickLocation(e: MapMouseEvent) {
-    goto(`/${e.lngLat.lng},${e.lngLat.lat}`, { noScroll: true });
+    deviceLocation = e.lngLat;
     reportEventOnce('geolocation/search');
   }
 
   function onGeolocate(e: MapMoveEvent) {
     if ('geolocateSource' in e && e.geolocateSource) {
       const lngLat = e.target.getCenter();
-      goto(`/${lngLat.lng},${lngLat.lat}`, { noScroll: true });
+      deviceLocation = lngLat;
       reportEventOnce('geolocation/browser');
     }
   }
 
   function onAutocompleteSelect(lngLat: maplibre.LngLat) {
-    goto(`/${lngLat.lng},${lngLat.lat}`, { noScroll: true });
+    deviceLocation = lngLat;
     reportEventOnce('geolocation/search');
   }
 </script>
 
-<div class="steps">
-  <Steps progress={1} />
-</div>
+<Steps progress={1} />
 
-<div class="step-1 prose">
+<div class="prose">
   <h2>Pick the location of your Tasmota device</h2>
   <p>You can use the <span class="geolocate"></span> button to find your location.</p>
 </div>
 
 <div class="container">
   <div class="loadingMap">
-    <span class="loading loading-spinner loading-xs"></span> Loading map
+    {#await delay(5000)}
+      <div class="loadingText">
+        <span class="loading loading-spinner loading-xs"></span> Loading map
+      </div>
+    {:then}
+      <div class="notLoadingText">
+        Not loading? Let me know:
+        <a href="mailto:tasmota@reinier.nz" class="link">tasmota@reinier.nz</a>
+      </div>
+    {/await}
   </div>
 
   <MapLibre
@@ -74,7 +72,7 @@
       </Control>
       <GeolocateControl
         position="top-left"
-        fitBoundsOptions={{ maxZoom: 10 }}
+        fitBoundsOptions={{ maxZoom: 10, speed: 4 }}
         showUserLocation={false}
       />
       <NavigationControl position="top-right" showCompass={false} />
@@ -88,18 +86,21 @@
   </MapLibre>
 </div>
 
-<div class="buttons">
-  <a
-    href={`/${deviceLocation?.lng},${deviceLocation?.lat}/timezone`}
-    class="next btn btn-primary"
-    disabled={!deviceLocation}>Choose time zone &rarr;</a
-  >
+<div class="prose">
+  {#if deviceLocation}
+    <a
+      href={`/${encodeURIComponent(deviceLocation.lng)},${encodeURIComponent(deviceLocation.lat)}`}
+      class="next btn btn-primary">Choose time zone &rarr;</a
+    >
+  {:else}
+    <span class="next btn btn-disabled">Choose time zone &rarr;</span>
+  {/if}
 </div>
 
 <style>
-  .steps {
-    width: 100%;
-    margin: 2rem 0;
+  .prose {
+    max-width: 100%;
+    text-align: center;
   }
 
   .container {
@@ -120,12 +121,24 @@
   }
 
   .loadingMap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em;
-
     background-color: oklch(var(--b2));
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    justify-content: center;
+
+    .loadingText {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+    }
+
+    .notLoadingText {
+      color: color-mix(in oklch, 70% oklch(var(--bc)), oklch(var(--b1)));
+      text-align: center;
+    }
   }
 
   .geolocate {
@@ -137,18 +150,6 @@
 
     @media (prefers-color-scheme: dark) {
       filter: invert(1);
-    }
-  }
-
-  .buttons {
-    margin-block: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-
-    .next {
-      margin-inline-start: auto;
     }
   }
 

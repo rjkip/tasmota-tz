@@ -17,3 +17,7 @@ export function debounced<T>(stateGetter: () => T, ms: number) {
 
   return () => state;
 }
+
+export function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}

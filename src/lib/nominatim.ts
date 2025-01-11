@@ -42,7 +42,19 @@ export async function geolocate(userQuery: string): Promise<GeocodingResults> {
   return await response.json();
 }
 
-export async function reverseGeocodeCountry({ lat, lng }: { lat: number; lng: number }) {
+export async function reverseGeocodeCountry({
+  lat,
+  lng,
+}: {
+  lat: number;
+  lng: number;
+}): Promise<{
+  countryIso: string;
+  displayName: string;
+  country: string;
+  lat: number;
+  lng: number;
+}> {
   const response = await fetch(
     `https://nominatim.openstreetmap.org/reverse.php?` +
       new URLSearchParams({ lat: lat.toString(), lon: lng.toString(), format: 'jsonv2' }),
@@ -57,5 +69,7 @@ export async function reverseGeocodeCountry({ lat, lng }: { lat: number; lng: nu
       result.address.country_code.toUpperCase(),
     displayName: result && result.display_name,
     country: result && result.address && result.address.country,
+    lat,
+    lng,
   };
 }

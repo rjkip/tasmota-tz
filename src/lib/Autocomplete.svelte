@@ -66,14 +66,14 @@
     {#await onKeyDown}
       <input
         type="search"
-        placeholder="Device location"
+        placeholder="Search location&hellip;"
         onfocus={onSearchFocus}
         bind:value={search}
       />
     {:then onKeyDown}
       <input
         type="search"
-        placeholder="Device location"
+        placeholder="Search location&hellip;"
         onfocus={onSearchFocus}
         bind:value={search}
         onkeydown={onKeyDown}
@@ -81,7 +81,7 @@
     {:catch}
       <input
         type="search"
-        placeholder="Device location"
+        placeholder="Search location&hellip;"
         onfocus={onSearchFocus}
         bind:value={search}
       />

@@ -5,15 +5,6 @@
 
 <svelte:head>
   <title>Tasmota time zone command helper</title>
-  <meta
-    name="description"
-    content="Set up accurate sunrise and sunset timers on your Tasmota device. Just select your device’s geographic location and time zone and execute the command on your device."
-  />
-  <meta
-    name="ahrefs-site-verification"
-    content="3721d5967c20f931ded5d8ef650a890b14c7da13dea8df42950acf658c6e5f2e"
-  />
-  <meta name="google-site-verification" content="9joMzsKR3tNou-jzbuZxtLXa4btHbxkMokRvgm5NYnM" />
 </svelte:head>
 
 <div class="layout">
