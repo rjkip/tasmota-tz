@@ -1,7 +1,7 @@
 <script>
   import { Timezone } from '@tubular/time';
-  import { weekFromDayOfMonth } from './timezones.js';
   import CopyableCommand from './CopyableCommand.svelte';
+  import { weekFromDayOfMonth } from './timezones.js';
 
   export let latLng, timeZone;
 
@@ -40,4 +40,4 @@
   $: command = commands && `Backlog ${commands.join('; ')}`;
 </script>
 
-<CopyableCommand {command} />
+<CopyableCommand {command} on:copied />

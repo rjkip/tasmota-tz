@@ -1,6 +1,9 @@
 <script>
-  import { slide } from 'svelte/transition';
   import { reportEventOnce } from '$lib/plausible.js';
+  import { createEventDispatcher } from 'svelte';
+  import { slide } from 'svelte/transition';
+
+  const dispatch = createEventDispatcher();
 
   export let command = '',
     disabled = false;
@@ -13,12 +16,14 @@
 
     input.focus();
     input.select();
-    document.execCommand('copy');
-    informCommandCopied = true;
-    setTimeout(() => {
-      informCommandCopied = false;
-    }, 3000);
-    reportEventOnce('copy');
+    navigator.clipboard.writeText(command).then(() => {
+      informCommandCopied = true;
+      setTimeout(() => {
+        informCommandCopied = false;
+      }, 3000);
+      reportEventOnce('copy');
+      dispatch('copied');
+    });
   }
 </script>
 
@@ -38,22 +43,14 @@
     />
   </div>
   <p class="help">
-    To execute the command, visit the console in your device's <a
-      href="https://tasmota.github.io/docs/WebUI/"
-      target="_blank">web UI</a
-    >.
+    To execute the command, visit your device&rsquo;s <em>Console</em> by visiting its IP address in
+    your browser, and pasting the command.
   </p>
 </form>
 
 {#if copyAttempted}
   <div class="success" transition:slide>
-    <p>
-      ✅ Command copied! If you thought this was useful, you can <a
-        href="https://ko-fi.com/D1D8K5VHY/?hidefeed=true"
-        on:click={() => reportEventOnce('donate')}
-        target="_blank">buy me a coffee!</a
-      >
-    </p>
+    <p>✅ Command copied!</p>
   </div>
 {/if}
 
@@ -76,7 +73,9 @@
     cursor: default;
   }
   .inform-not-copied {
-    transition: background-color 750ms ease, border-color 750ms ease;
+    transition:
+      background-color 750ms ease,
+      border-color 750ms ease;
   }
   .inform-copied {
     border-color: green;

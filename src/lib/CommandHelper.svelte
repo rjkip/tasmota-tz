@@ -1,7 +1,8 @@
 <script>
-  import TimeZoneSelector from './TimeZoneSelector.svelte';
-  import TimeZoneCommand from './TimeZoneCommand.svelte';
   import GeolocatingMap from './map/GeolocatingMap.svelte';
+  import SupportProject from './SupportProject.svelte';
+  import TimeZoneCommand from './TimeZoneCommand.svelte';
+  import TimeZoneSelector from './TimeZoneSelector.svelte';
 
   let latLng;
   let latLngSelectedOnce = false;
@@ -17,6 +18,11 @@
     countryIso = event.detail.countryIso;
 
     latLngSelectedOnce = true;
+  }
+
+  let copied = false;
+  function onCopy() {
+    copied = true;
   }
 </script>
 
@@ -36,9 +42,15 @@
   <section class:enabled={latLng && selectedTimeZone}>
     <h2>🚀 Execute commands on your Tasmota device</h2>
     {#if latLng && selectedTimeZone}
-      <TimeZoneCommand bind:timeZone={selectedTimeZone} {latLng} />
+      <TimeZoneCommand bind:timeZone={selectedTimeZone} {latLng} on:copied={onCopy} />
     {/if}
   </section>
+
+  {#if copied}
+    <section class="enabled">
+      <SupportProject {countryIso} />
+    </section>
+  {/if}
 </div>
 
 <style>
