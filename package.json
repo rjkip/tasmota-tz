@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node fix-tubular.js && vite dev",
-    "build": "node fix-tubular.js && vite build",
+    "build": "node fix-tubular.js && vite build && mkdir .netlify/edge-functions && cp src/edgeBlockPhp.ts .netlify/edge-functions/block-php.ts",
     "preview": "node fix-tubular.js && vite preview",
     "test": "npm run test:integration && npm run test:unit",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -21,6 +21,7 @@
     "@tubular/time": "^3.8.14",
     "leaflet": "^1.9.4",
     "lodash": "^4.17.21",
+    "@netlify/edge-functions": "^2.11.0",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.10.1",
     "svelte": "^4.0.5",
