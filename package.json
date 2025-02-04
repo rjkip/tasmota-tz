@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node fix-tubular.js && vite dev",
-    "build": "node fix-tubular.js && vite build && mkdir .netlify/edge-functions && cp src/edgeBlockPhp.ts .netlify/edge-functions/block-php.ts",
+    "build": "node fix-tubular.js && vite build && mkdir .netlify/edge-functions && cp src/edgeBlock.ts .netlify/edge-functions/block.ts",
     "preview": "node fix-tubular.js && vite preview",
     "test": "npm run test:integration && npm run test:unit",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
