@@ -14,6 +14,7 @@ export async function handle({ event, resolve }) {
       status: 301,
       headers: {
         location: newLocation,
+        'cache-control': 'public, durable, max-age=86400',
       },
     });
   }
