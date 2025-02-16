@@ -15,6 +15,7 @@ export async function handle({ event, resolve }) {
       headers: {
         location: newLocation,
         'cache-control': 'public, durable, max-age=86400',
+        'netlify-vary': '',
       },
     });
   }
