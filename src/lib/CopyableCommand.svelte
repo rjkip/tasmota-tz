@@ -1,7 +1,6 @@
 <script>
   import { reportEventOnce } from '$lib/plausible.js';
   import { createEventDispatcher } from 'svelte';
-  import { slide } from 'svelte/transition';
 
   const dispatch = createEventDispatcher();
 
@@ -28,7 +27,7 @@
 </script>
 
 {#if copyAttempted}
-  <p class="success" transition:slide>✅ Command copied!</p>
+  <p class="success">✅ Command copied!</p>
 {/if}
 
 <form on:submit|preventDefault>

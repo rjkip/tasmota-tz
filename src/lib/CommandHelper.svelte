@@ -9,6 +9,8 @@
   let countryIso;
   let selectedTimeZone;
 
+  let sectionCommand;
+
   function onLocating() {
     latLng = null;
     countryIso = null;
@@ -23,25 +25,24 @@
   let copied = false;
   function onCopy() {
     copied = true;
+    sectionCommand.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 </script>
 
 <div class="sections">
-  {#if !copied}
-    <section class:enabled={true}>
-      <h2>📌 Pick the location of your Tasmota device</h2>
-      <GeolocatingMap on:locating={onLocating} on:located={onLocated} tall={!latLngSelectedOnce} />
-    </section>
+  <section class:enabled={true}>
+    <h2>📌 Pick the location of your Tasmota device</h2>
+    <GeolocatingMap on:locating={onLocating} on:located={onLocated} tall={!latLngSelectedOnce} />
+  </section>
 
-    <section class:enabled={latLng}>
-      <h2>🕙 Select a time zone for that location</h2>
-      {#if latLng}
-        <TimeZoneSelector bind:timeZone={selectedTimeZone} filterByCountryIso={countryIso} />
-      {/if}
-    </section>
-  {/if}
+  <section class:enabled={latLng}>
+    <h2>🕙 Select a time zone for that location</h2>
+    {#if latLng}
+      <TimeZoneSelector bind:timeZone={selectedTimeZone} filterByCountryIso={countryIso} />
+    {/if}
+  </section>
 
-  <section class:enabled={latLng && selectedTimeZone}>
+  <section class:enabled={latLng && selectedTimeZone} bind:this={sectionCommand}>
     <h2>🚀 Execute commands on your Tasmota device</h2>
     {#if latLng && selectedTimeZone}
       <TimeZoneCommand bind:timeZone={selectedTimeZone} {latLng} on:copied={onCopy} />
@@ -50,7 +51,7 @@
 
   {#if copied}
     <section class="enabled">
-      <SupportProject {countryIso} />
+      <SupportProject />
     </section>
   {/if}
 </div>
