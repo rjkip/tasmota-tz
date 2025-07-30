@@ -1,16 +1,22 @@
 <script>
-  import { geolocate } from '../nominatim.js';
-  import { debounce } from 'lodash/function.js';
-  import { createEventDispatcher } from 'svelte';
-  import { onClickOutside } from './actions.js';
   import { reportEventOnce } from '$lib/plausible.js';
+  import lodash from 'lodash/function.js';
+  import { createEventDispatcher } from 'svelte';
+  import { geolocate } from '../nominatim.js';
+  import { onClickOutside } from './actions.js';
 
   const dispatch = createEventDispatcher();
 
-  export let query = '';
-  let geolocationResults = null,
-    geolocatingQuery = false,
-    geolocatingButton = false;
+  /**
+   * @typedef {Object} Props
+   * @property {string} [query]
+   */
+
+  /** @type {Props} */
+  let { query = $bindable() } = $props();
+  let geolocationResults = $state(null),
+    geolocatingQuery = $state(false),
+    geolocatingButton = $state(false);
 
   async function initiateGeolocation() {
     if (query.length < 3) return;
@@ -64,22 +70,22 @@
 <div class="search-control">
   <button
     class="geolocate-navigator"
-    on:click={initiateBrowserGeolocation}
+    onclick={initiateBrowserGeolocation}
     class:geolocating={geolocatingButton}>🛰️</button
   >
   <div class="autocomplete" use:onClickOutside={() => (geolocationResults = null)}>
     <input
       type="search"
       bind:value={query}
-      on:focus={initiateGeolocation}
-      on:input={debounce(initiateGeolocation, 500)}
+      onfocus={initiateGeolocation}
+      oninput={lodash.debounce(initiateGeolocation, 500)}
       placeholder="Search for a location..."
       class:geolocating={geolocatingQuery}
     />
     {#if geolocationResults}
       <ul class="autocomplete-results">
         {#each geolocationResults.slice(0, 5) as location}
-          <li on:click={() => onGeolocationResultSelect(location)}>
+          <li onclick={() => onGeolocationResultSelect(location)}>
             {location.display_name}
           </li>
         {:else}

@@ -1,14 +1,23 @@
 <script>
+  import { createBubbler, preventDefault, once } from 'svelte/legacy';
+
+  const bubble = createBubbler();
   import { reportEventOnce } from '$lib/plausible.js';
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
 
-  export let command = '',
-    disabled = false;
-  let input,
-    copyAttempted = false,
-    informCommandCopied = false;
+  /**
+   * @typedef {Object} Props
+   * @property {string} [command]
+   * @property {boolean} [disabled]
+   */
+
+  /** @type {Props} */
+  let { command = '', disabled = false } = $props();
+  let input = $state(),
+    copyAttempted = $state(false),
+    informCommandCopied = $state(false);
 
   function copy() {
     copyAttempted = true;
@@ -30,7 +39,7 @@
   <p class="success">✅ Command copied!</p>
 {/if}
 
-<form on:submit|preventDefault>
+<form onsubmit={preventDefault(bubble('submit'))}>
   <div class="side-by-side">
     <input
       bind:this={input}
@@ -41,7 +50,7 @@
       type="text"
       {disabled}
       value={command}
-      on:focus|once={copy}
+      onfocus={once(copy)}
       data-testid="copy"
     />
   </div>

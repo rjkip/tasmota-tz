@@ -1,16 +1,22 @@
 <script>
-  import SearchControl from './SearchControl.svelte';
-  import Map from './Map.svelte';
   import { createEventDispatcher } from 'svelte';
   import { reverseGeocodeCountry } from '../nominatim.js';
+  import Map from './Map.svelte';
+  import SearchControl from './SearchControl.svelte';
 
   const dispatch = createEventDispatcher();
 
-  export let tall = true;
+  /**
+   * @typedef {Object} Props
+   * @property {boolean} [tall]
+   */
 
-  let marker,
-    geolocating = false,
-    searchQuery;
+  /** @type {Props} */
+  let { tall = true } = $props();
+
+  let marker = $state(),
+    geolocating = $state(false),
+    searchQuery = $state('');
 
   async function resolveAndDispatch(latLng) {
     marker = latLng;

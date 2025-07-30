@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-30T22:51:09.907Z\n"
+"PO-Revision-Date: 2025-07-30T23:16:25.688Z\n"
+"Last-Translator: \n"
+"Language: English\n"
+"Language-Team: \n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"MIME-Version: 1.0\n"
+
+#: src/lib/CommandHelper.svelte
+msgid "📌 Pick the location of your Tasmota device"
+msgstr "📌 Pick the location of your Tasmota device"
+
+#: src/lib/CommandHelper.svelte
+msgid "🕙 Select a time zone for that location"
+msgstr "🕙 Select a time zone for that location"
+
+#: src/lib/CommandHelper.svelte
+msgid "🚀 Execute commands on your Tasmota device"
+msgstr "🚀 Execute commands on your Tasmota device"
+
+#: src/lib/SupportProject.svelte
+msgid "💖 Support the project"
+msgstr "💖 Support the project"
+
+#: src/lib/SupportProject.svelte
+msgid "☕ Ko-fi"
+msgstr "☕ Ko-fi"
+
+#: src/lib/SupportProject.svelte
+msgid "Buy me a coffee!<0/>"
+msgstr "Buy me a coffee!<0/>"
+
+#: src/lib/SupportProject.svelte
+msgid "Reinier, software engineer and architect"
+msgstr "Reinier, software engineer and architect"
+
+#: src/lib/SupportProject.svelte
+msgid "Build your web app or website? Automate your business?"
+msgstr "Build your web app or website? Automate your business?"
+
+#: src/lib/SupportProject.svelte
+msgid "I’ve got 17+ years of experience. <0>Drop me a line.<0/></0>"
+msgstr "I’ve got 17+ years of experience. <0>Drop me a line.<0/></0>"
+
+#: src/lib/CopyableCommand.svelte
+msgid "✅ Command copied!"
+msgstr "✅ Command copied!"
+
+#: src/lib/CopyableCommand.svelte
+msgid ""
+"To execute the command, visit your device’s <0>Console</0> by visiting its IP address in\n"
+"    your browser, and pasting the command."
+msgstr ""
+"To execute the command, visit your device’s <0>Console</0> by visiting its IP address in\n"
+"    your browser, and pasting the command."
+
+#: src/lib/TimeZoneSelector.svelte
+msgid "Please select your time zone..."
+msgstr "Please select your time zone..."
+
+#: src/routes/+page.svelte
+msgid "🌅 Tasmota time zone command helper"
+msgstr "🌅 Tasmota time zone command helper"
+
+#: src/routes/+page.svelte
+msgid ""
+"Set up accurate sunrise and sunset timers on your Tasmota device. Just select your\n"
+"    device’s geographic location and time zone and execute the command on your device."
+msgstr ""
+"Set up accurate sunrise and sunset timers on your Tasmota device. Just select your\n"
+"    device’s geographic location and time zone and execute the command on your device."
+
+#: src/routes/+page.svelte
+msgid "Created by<0/> <1>🌏 reinier.nz</1> • <2>💼 in/rjkip</2> • <3>🐦 @rjkip</3>"
+msgstr "Created by<0/> <1>🌏 reinier.nz</1> • <2>💼 in/rjkip</2> • <3>🐦 @rjkip</3>"
+
+#: src/lib/map/SearchControl.svelte
+msgid "Search for a location..."
+msgstr "Search for a location..."
+
+#: src/lib/map/SearchControl.svelte
+msgid "No results"
+msgstr "No results"

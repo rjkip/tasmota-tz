@@ -7,7 +7,7 @@
   const usersTimeZone =
     (browser && new Intl.DateTimeFormat('default').resolvedOptions().timeZone) || null;
 
-  let timeZones = updatedTimeZones();
+  let timeZones = $state(updatedTimeZones());
   onMount(() => {
     const interval = setInterval(() => {
       timeZones = updatedTimeZones();
@@ -40,12 +40,12 @@
     `${option.value}`.toLowerCase().includes(filterText.toLowerCase()) ||
     `${option.group}`.toLowerCase().includes(filterText.toLowerCase());
 
-  export let timeZone, filterByCountryIso;
-  let value = null;
+  let { timeZone = $bindable(), filterByCountryIso } = $props();
+  let value = $state(null);
 
-  $: effectiveTimeZones = filterByCountryIso
+  let effectiveTimeZones = $derived(filterByCountryIso
     ? timeZones.filter((tz) => tz.details.countryIso === filterByCountryIso)
-    : timeZones;
+    : timeZones);
 </script>
 
 <Select
