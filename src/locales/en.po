@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-30T22:51:09.907Z\n"
-"PO-Revision-Date: 2025-07-30T23:03:42.639Z\n"
+"PO-Revision-Date: 2025-07-30T23:16:25.688Z\n"
 "Last-Translator: \n"
 "Language: English\n"
 "Language-Team: \n"
@@ -87,7 +87,3 @@ msgstr "Search for a location..."
 #: src/lib/map/SearchControl.svelte
 msgid "No results"
 msgstr "No results"
-
-#: src/lib/TimeZoneCommand.svelte
-msgid "Backlog {0}"
-msgstr "Backlog {0}"

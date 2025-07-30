@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-30T22:51:09.910Z\n"
-"PO-Revision-Date: 2025-07-30T23:08:00.329Z\n"
+"PO-Revision-Date: 2025-07-30T23:16:25.690Z\n"
 "Last-Translator: \n"
 "Language: German\n"
 "Language-Team: \n"
@@ -26,25 +26,15 @@ msgstr "Spendier mir einen Kaffee!<0/>"
 
 #: src/lib/SupportProject.svelte
 msgid "Reinier, software engineer and architect"
-msgstr "Reinier, Softwareentwickler und Architekt"
+msgstr "Reinier, software engineer and architect"
 
 #: src/lib/SupportProject.svelte
 msgid "Build your web app or website? Automate your business?"
-msgstr "Web-App oder Website entwickeln? Geschäftsprozesse automatisieren?"
-
-#~ msgid "I've got 17+ years of experience. <0>Drop me a line.<0/></0>"
-#~ msgstr "Ich habe über 17 Jahre Erfahrung. <0>Schreib mir eine Nachricht.<0/></0>"
+msgstr "Build your web app or website? Automate your business?"
 
 #: src/lib/CopyableCommand.svelte
 msgid "✅ Command copied!"
 msgstr "✅ Befehl kopiert!"
-
-#~ msgid ""
-#~ "To execute the command, visit your device's <0>Console</0> by visiting its IP address in\n"
-#~ "    your browser, and pasting the command."
-#~ msgstr ""
-#~ "Um den Befehl auszuführen, besuche die <0>Konsole</0> deines Geräts, indem du dessen IP-Adresse in\n"
-#~ "    deinem Browser aufrufst und den Befehl einfügst."
 
 #: src/lib/CommandHelper.svelte
 msgid "📌 Pick the location of your Tasmota device"
@@ -78,19 +68,17 @@ msgstr "Nach einem Standort suchen..."
 msgid "No results"
 msgstr "Keine Ergebnisse"
 
-#: src/lib/TimeZoneCommand.svelte
-msgid "Backlog {0}"
-msgstr "Backlog {0}"
-
 #: src/lib/SupportProject.svelte
 msgid "I’ve got 17+ years of experience. <0>Drop me a line.<0/></0>"
-msgstr ""
+msgstr "I’ve got 17+ years of experience. <0>Drop me a line.<0/></0>"
 
 #: src/lib/CopyableCommand.svelte
 msgid ""
 "To execute the command, visit your device’s <0>Console</0> by visiting its IP address in\n"
 "    your browser, and pasting the command."
 msgstr ""
+"Um den Befehl auszuführen, besuche die <0>Console</0> deines Geräts, indem du dessen IP-Adresse in\n"
+"    deinem Browser aufrufst und den Befehl einfügst."
 
 #: src/routes/+page.svelte
 msgid ""

@@ -39,7 +39,9 @@
                 `TimeZone 99`,
               ]
             : [`TimeZone ${timeZoneUtcOffsetFormatted}`]),
-        ]);
+        ],
+  );
+  // @wc-ignore
   let command = $derived(commands && `Backlog ${commands.join('; ')}`);
 </script>
 
