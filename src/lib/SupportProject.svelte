@@ -11,10 +11,10 @@
     <p>
       <a
         href="https://ko-fi.com/D1D8K5VHY/?hidefeed=true"
-        on:click={() => reportEventOnce('donate')}
+        onclick={() => reportEventOnce('donate')}
         target="_blank"
       >
-        Buy me a coffee!<span />
+        Buy me a coffee!<span></span>
       </a>
     </p>
   </div>
@@ -27,10 +27,10 @@
         I&rsquo;ve got 17+ years of experience.
         <a
           href="https://reinier.nz/?utm_source=tasmotatimezone.com&utm_medium=referral&utm_content=support"
-          on:click={() => reportEventOnce('reinier.nz')}
+          onclick={() => reportEventOnce('reinier.nz')}
           target="_blank"
         >
-          Drop me a line.<span />
+          Drop me a line.<span></span>
         </a>
       </p>
     </div>

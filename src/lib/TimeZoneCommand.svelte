@@ -3,22 +3,25 @@
   import CopyableCommand from './CopyableCommand.svelte';
   import { weekFromDayOfMonth } from './timezones.js';
 
-  export let latLng, timeZone;
+  let { latLng, timeZone } = $props();
 
-  $: hemisphere = latLng.lat >= 0 ? '0' : '1';
-  $: timeZoneInfo = timeZone && Timezone.getTimezone(timeZone);
-  $: timeZoneUtcOffsetMinutes = timeZoneInfo && timeZoneInfo.utcOffset / 60;
-  $: timeZoneUtcDstOffsetMinutes =
-    timeZoneInfo && timeZoneUtcOffsetMinutes + timeZoneInfo.dstOffset / 60;
-  $: timeZoneUtcOffsetFormatted = timeZoneInfo && Timezone.formatUtcOffset(timeZoneInfo.utcOffset);
-  $: daylightSavingStarts = timeZoneInfo && timeZoneInfo._dstRule;
-  $: daylightSavingEnds = timeZoneInfo && timeZoneInfo._stdRule;
+  let hemisphere = $derived(latLng.lat >= 0 ? '0' : '1');
+  let timeZoneInfo = $derived(timeZone && Timezone.getTimezone(timeZone));
+  let timeZoneUtcOffsetMinutes = $derived(timeZoneInfo && timeZoneInfo.utcOffset / 60);
+  let timeZoneUtcDstOffsetMinutes = $derived(
+    timeZoneInfo && timeZoneUtcOffsetMinutes + timeZoneInfo.dstOffset / 60,
+  );
+  let timeZoneUtcOffsetFormatted = $derived(
+    timeZoneInfo && Timezone.formatUtcOffset(timeZoneInfo.utcOffset),
+  );
+  let daylightSavingStarts = $derived(timeZoneInfo && timeZoneInfo._dstRule);
+  let daylightSavingEnds = $derived(timeZoneInfo && timeZoneInfo._stdRule);
 
-  $: commands =
+  let commands = $derived(
     latLng.lat === undefined ||
-    latLng.lng === undefined ||
-    latLng.lat === null ||
-    latLng.lng === null
+      latLng.lng === undefined ||
+      latLng.lat === null ||
+      latLng.lng === null
       ? null
       : [
           `Latitude ${latLng.lat}`,
@@ -36,8 +39,8 @@
                 `TimeZone 99`,
               ]
             : [`TimeZone ${timeZoneUtcOffsetFormatted}`]),
-        ];
-  $: command = commands && `Backlog ${commands.join('; ')}`;
+        ]);
+  let command = $derived(commands && `Backlog ${commands.join('; ')}`);
 </script>
 
 <CopyableCommand {command} on:copied />

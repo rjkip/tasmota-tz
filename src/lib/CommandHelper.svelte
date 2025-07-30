@@ -4,12 +4,12 @@
   import TimeZoneCommand from './TimeZoneCommand.svelte';
   import TimeZoneSelector from './TimeZoneSelector.svelte';
 
-  let latLng;
-  let latLngSelectedOnce = false;
-  let countryIso;
-  let selectedTimeZone;
+  let latLng = $state();
+  let latLngSelectedOnce = $state(false);
+  let countryIso = $state();
+  let selectedTimeZone = $state();
 
-  let sectionCommand;
+  let sectionCommand = $state();
 
   function onLocating() {
     latLng = null;
@@ -22,7 +22,7 @@
     latLngSelectedOnce = true;
   }
 
-  let copied = false;
+  let copied = $state(false);
   function onCopy() {
     copied = true;
     sectionCommand.scrollIntoView({ behavior: 'smooth', block: 'start' });

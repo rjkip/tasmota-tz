@@ -1,11 +1,19 @@
 <script>
+  import { run } from 'svelte/legacy';
+
   import { browser } from '$app/environment';
   import { reportEventOnce } from '$lib/plausible.js';
   import { createEventDispatcher, onMount } from 'svelte';
 
-  export let marker,
-    markerThrobbing = false;
-  let mountPoint, map, markerObj;
+  /**
+   * @typedef {Object} Props
+   * @property {any} marker
+   * @property {boolean} [markerThrobbing]
+   */
+
+  /** @type {Props} */
+  let { marker, markerThrobbing = false } = $props();
+  let mountPoint = $state(), map = $state(), markerObj = $state();
 
   let dispatch = createEventDispatcher();
 
@@ -50,15 +58,17 @@
     };
   });
 
-  $: if (map && marker) {
-    if (markerObj) markerObj.remove();
-    markerObj = L.marker(marker).addTo(map);
-    markerObj._icon.classList.toggle('map-marker-throbbing', markerThrobbing);
-    map.flyTo(marker, Math.max(map.getZoom(), 5));
-  }
+  run(() => {
+    if (map && marker) {
+      if (markerObj) markerObj.remove();
+      markerObj = L.marker(marker).addTo(map);
+      markerObj._icon.classList.toggle('map-marker-throbbing', markerThrobbing);
+      map.flyTo(marker, Math.max(map.getZoom(), 5));
+    }
+  });
 </script>
 
-<div class="map" bind:this={mountPoint} />
+<div class="map" bind:this={mountPoint}></div>
 
 <style>
   .map {
