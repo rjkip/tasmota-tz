@@ -1,7 +1,7 @@
 <script>
   import { browser } from '$app/environment';
-  import { createEventDispatcher, onMount } from 'svelte';
   import { reportEventOnce } from '$lib/plausible.js';
+  import { createEventDispatcher, onMount } from 'svelte';
 
   export let marker,
     markerThrobbing = false;
@@ -36,6 +36,7 @@
     });
 
     let observer;
+    // @wc-ignore
     if ('ResizeObserver' in window) {
       observer = new ResizeObserver(() => map.invalidateSize());
       observer.observe(mountPoint);
